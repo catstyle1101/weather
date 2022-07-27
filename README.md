@@ -1,5 +1,8 @@
 # weather.py
-checks weather on current location (detected by ip) and print in in terminal
-you can add project directory to Path and use program by executing "weather" in terminal
+Проверяет погоду на сайте openweathermap.org (нужно предварительно получить Token на сайте и записать его в .env файл
+вызов - weather.bat
+Можно добавить директорию проекта в Path, чтобы в любой директории в терминале получать погоду.
+Есть запись истории в файл history.json
+Координаты определяются на основе вашего айпи адреса
 
 ![image](https://user-images.githubusercontent.com/37059480/181207976-67b7ca4e-4a27-48aa-b276-081fbad9193d.png)
