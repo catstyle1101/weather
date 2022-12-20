@@ -14,7 +14,6 @@ from coordinates import Coordinates
 
 Celsius = float
 millimeters_of_mercury = int
-#{'coord': {'lon': 61.4291, 'lat': 55.154}, 'weather': [{'id': 520, 'main': 'Rain', 'description': 'небольшой проливной дождь', 'icon': '09d'}], 'base': 'stations', 'main': {'temp': 18.94, 'feels_like': 19.5, 'temp_min': 18.94, 'temp_max': 19.05, 'pressure': 1010, 'humidity': 100}, 'visibility': 10000, 'wind': {'speed': 4, 'deg': 10}, 'rain': {'1h': 0.23}, 'clouds': {'all': 75}, 'dt': 1658905268, 'sys': {'type': 2, 'id': 49378, 'country': 'RU', 'sunrise': 1658879578, 'sunset': 1658938102}, 'timezone': 18000, 'id': 1508291, 'name': 'Челябинск', 'cod': 200}
 
 
 class WeatherType(str, Enum):
@@ -49,6 +48,7 @@ class Weather:
     humidity: int
     wind_speed: Optional[int]
     wind_direction: Optional[WindDirection]
+
 
 def get_weather(coordinates: Coordinates) -> Weather:
     response = _get_openweather_response(
