@@ -92,15 +92,15 @@ def _parse_wind_direction(openweather_dict):
         deg = float(openweather_dict["wind"]["deg"])
     except KeyError:
         raise ApiServiceError
-    directions = {WindDirection.NORTH: (337.5, 22.5), WindDirection.NORTHEAST: (22.5, 67.5),
-                  WindDirection.EAST: (67.5, 112.5), WindDirection.SOUTHEAST: (112.5, 157.5),
-                  WindDirection.SOUTH: (157.5, 202.5), WindDirection.SOUTHWEST: (202.5, 247.5),
-                  WindDirection.WEST: (247.5, 292.5), WindDirection.NORTHWEST: (292.5, 337.5)}
-    for direction, degree in directions.items():
-        if deg >= degree[0] and deg < degree[1]:
+    directions = ((WindDirection.NORTH, (337.5, 22.5)), (WindDirection.NORTHEAST, (22.5, 67.5)),
+                  (WindDirection.EAST, (67.5, 112.5)), (WindDirection.SOUTHEAST, (112.5, 157.5)),
+                  (WindDirection.SOUTH, (157.5, 202.5)), (WindDirection.SOUTHWEST, (202.5, 247.5)),
+                  (WindDirection.WEST, (247.5, 292.5)), (WindDirection.NORTHWEST, (292.5, 337.5)))
+    for direction, degree in directions:
+        if degree[0] <= deg % 360 < degree[1]:
             return direction
-        if deg >= directions[WindDirection.NORTH][0] or deg < directions[WindDirection.NORTH][1]:
-            return WindDirection.NORTH
+        if deg >= 337.5 or deg < 22.5:
+            return direction
 
 
 def _parse_openweather_response(openweather_response: str) -> Weather:
@@ -117,7 +117,7 @@ def _parse_openweather_response(openweather_response: str) -> Weather:
         pressure=_parse_pressure(openweather_dict),
         humidity=_parse_humidity(openweather_dict),
         wind_speed=_parse_wind_speed(openweather_dict),
-        wind_direction = _parse_wind_direction(openweather_dict)
+        wind_direction=_parse_wind_direction(openweather_dict)
     )
 
 

@@ -7,3 +7,5 @@
 Координаты определяются на основе вашего айпи адреса
 
 ![image](https://user-images.githubusercontent.com/37059480/181207976-67b7ca4e-4a27-48aa-b276-081fbad9193d.png)
+## Требования
+- python 3.10+
