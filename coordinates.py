@@ -4,7 +4,7 @@ from dataclasses import dataclass
 import requests
 
 import config
-from exceptions import *
+from exceptions import CantGetCoordinates
 
 
 @dataclass(frozen=True)
@@ -34,7 +34,10 @@ def _parse_coords():
     response = _get_ip_info()
     data = json.loads(response.text)
     try:
-        coords = Coordinates(latitude=float(data['loc'].split(',')[0]), longitude=float(data['loc'].split(',')[1]))
+        coords = Coordinates(
+                latitude=float(data['loc'].split(',')[0]),
+                longitude=float(data['loc'].split(',')[1])
+                )
         return coords
     except IndexError:
         raise CantGetCoordinates()
